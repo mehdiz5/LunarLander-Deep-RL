@@ -7,62 +7,49 @@ import os
 module_directory = "src/"
 if module_directory not in sys.path:
     sys.path.append(module_directory)
-    
-from utils import create_env, get_model_class
+
+from utils import create_env, get_model_class, create_argument_parser
 
 # Main function
 def main():
-    # Parse arguments
-    parser = argparse.ArgumentParser(description="Train and save reinforcement learning models.")
-    parser.add_argument(
-        "--experiment_name",
-        type=str,
-        default="default_experiment",
-        help="Name of the experiment (used for saving models)."
-    )
-    parser.add_argument(
-        "--timesteps",
-        type=int,
-        default=100000,
-        help="Number of timesteps for training."
-    )
-    parser.add_argument(
-        "--verbose",
-        type=int,
-        default=1,
-        choices=[0, 1, 2],
-        help="Verbosity level: 0 for silent, 1 for info, 2 for debug."
-    )
-    parser.add_argument(
-        "--method",
-        type=str,
-        default="PPO",
-        help="RL method to use for training (e.g., PPO, DQN)."
-    )
+    parser = create_argument_parser()
     args = parser.parse_args()
 
-    # Define save path
+    # Define save path for the trained model
     save_dir = os.path.join("models", args.experiment_name, args.method)
     os.makedirs(save_dir, exist_ok=True)
     save_path = os.path.join(save_dir, f"{args.timesteps}-model.zip")
 
-    # Check if the model already exists
+    # Check if the model already exists to avoid repeating the same experiment
     if os.path.exists(save_path):
         print(f"Model already exists at: {save_path}. Skipping experiment.")
         return
 
-    # Create environment
     env = create_env()
 
     # Create the model
-    model_class = get_model_class(args.method)
-    model = model_class("MlpPolicy", env, verbose=args.verbose)
+    # Parse MLP architecture
+    mlp_architecture = tuple(map(int, args.mlp_architecture.split(",")))
 
-    # Train the model
+    model_params = {
+        "policy": "MlpPolicy",
+        "env": env,
+        "verbose": args.verbose,
+        "learning_rate": args.learning_rate,
+        "gamma": args.gamma,
+        "policy_kwargs": {"net_arch": mlp_architecture},
+    }
+    model_class = get_model_class(args.method)
+
+    # Include n_steps for PPO models
+    if args.method.upper() == "PPO":
+        model_params["n_steps"] = args.n_steps
+
+    model = model_class(**model_params)
+
     print(f"Starting training for {args.timesteps} timesteps...")
     model.learn(total_timesteps=args.timesteps, progress_bar=True)
 
-    # Save the model
     model.save(save_path)
     print(f"Model saved at: {save_path}")
 
