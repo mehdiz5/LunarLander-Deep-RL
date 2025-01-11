@@ -25,7 +25,7 @@ def main():
         print(f"Model already exists at: {save_path}. Skipping experiment.")
         return
 
-    env = create_env()
+    env = create_env(fuel=True)
 
     # Create the model
     # Parse MLP architecture

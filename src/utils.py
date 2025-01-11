@@ -1,12 +1,17 @@
 import gymnasium as gym
 from stable_baselines3 import PPO, DQN
 import argparse
+from custom_env import FuelRewardWrapper
 
 # Function to create the environment
-def create_env(render_mode= None):
+def create_env(render_mode= None, fuel = False):
     if render_mode is not None:
-        return gym.make("LunarLander-v3", render_mode=render_mode)
-    return gym.make("LunarLander-v3")
+        env = gym.make("LunarLander-v3", render_mode=render_mode)
+    else:
+        env = gym.make("LunarLander-v3")
+    if fuel:
+        env = FuelRewardWrapper(env)
+    return env
 
 # Function to get the model class
 def get_model_class(method_name):
@@ -20,7 +25,7 @@ def get_model_class(method_name):
 
 # Function to create argument parser
 def create_argument_parser():
-    parser = argparse.ArgumentParser(description="Train and save reinforcement learning models.")
+    parser = argparse.ArgumentParser(description="Train, eval and save reinforcement learning models.")
 
     # Required arguments
     parser.add_argument(
@@ -85,6 +90,12 @@ def create_argument_parser():
         type=int,
         default=10000,
         help="Number of timesteps between target network updates (for methods like DQN)."
+    )
+    parser.add_argument(
+        "--limit_fuel",
+        type=int,
+        default=False,
+        help="Limit the fuel available to the agent."
     )
 
     return parser
