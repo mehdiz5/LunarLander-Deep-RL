@@ -73,6 +73,7 @@ Make sure that a model with the same parameters exists in the appropriate saved 
 - **`src/test/eval.py`**: Script for evaluating trained RL agents.  
 - **`src/custom_env.py`**: Contains the Custom env Wrapper for the bonus question.
 - **`src/manual_playing.py`**: is just a script to manually play the game using the keyboard.
+- **`src/manual_playing.py`**: Contains some fuctions such as the parser to avoid boilerplate code.
 - **`requirements.txt`**: Lists the project dependencies.  
 
 ---
