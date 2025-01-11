@@ -1,7 +1,7 @@
 import gymnasium as gym
 
 class FuelRewardWrapper(gym.Wrapper):
-    def __init__(self, env, max_fuel=100):
+    def __init__(self, env, max_fuel=400):
         """
         Wrapper to introduce limited fuel and penalties for inefficient fuel usage.
 

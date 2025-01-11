@@ -9,7 +9,7 @@ def create_env(render_mode= None, fuel = False):
         env = gym.make("LunarLander-v3", render_mode=render_mode)
     else:
         env = gym.make("LunarLander-v3")
-    if fuel:
+    if fuel==1:
         env = FuelRewardWrapper(env)
     return env
 
@@ -94,7 +94,7 @@ def create_argument_parser():
     parser.add_argument(
         "--limit_fuel",
         type=int,
-        default=False,
+        default=0,
         help="Limit the fuel available to the agent."
     )
 

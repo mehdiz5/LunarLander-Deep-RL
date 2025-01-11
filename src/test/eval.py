@@ -26,7 +26,7 @@ def main(args):
     
     print(f"Loading model from {model_path}...")
     
-    env = create_env()
+    env = create_env(render_mode="human", fuel = args.limit_fuel)
 
     model_class = get_model_class(method_name)
     
@@ -37,16 +37,7 @@ def main(args):
     mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10)
     print(f"Mean reward: {mean_reward}, Std reward: {std_reward}")
     
-    print("Rendering the agent...")
-    render_env = create_env(render_mode="human")
-    obs, _ = render_env.reset()
-    done = False
-    
-    while not done:
-        action, _ = model.predict(obs)
-        obs, reward, done, _, _ = render_env.step(action)
-    
-    render_env.close()
+    env.close()
     print("Evaluation completed.")
 
 if __name__ == "__main__":
