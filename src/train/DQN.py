@@ -18,7 +18,7 @@ def main():
     # Define save path for the trained model
     save_dir = os.path.join("models", args.experiment_name, args.method)
     os.makedirs(save_dir, exist_ok=True)
-    save_path = os.path.join(save_dir, f"{args.timesteps}-model.zip")
+    save_path = os.path.join(save_dir, f"{args.timesteps}-{args.mlp_architecture}-{args.learning_rate}-{args.gamma}-{args.batch_size}-{args.target_update_interval}-model.zip")
 
     # Check if the model already exists to avoid repeating the same experiment
     if os.path.exists(save_path):
@@ -37,15 +37,11 @@ def main():
         "verbose": args.verbose,
         "learning_rate": args.learning_rate,
         "gamma": args.gamma,
+        "target_update_interval": args.target_update_interval,
         "policy_kwargs": {"net_arch": mlp_architecture},
     }
-    model_class = get_model_class(args.method)
 
-    # Include n_steps for PPO models
-    if args.method.upper() == "PPO":
-        model_params["n_steps"] = args.n_steps
-
-    model = model_class(**model_params)
+    model = DQN(**model_params)
 
     print(f"Starting training for {args.timesteps} timesteps...")
     model.learn(total_timesteps=args.timesteps, progress_bar=True)

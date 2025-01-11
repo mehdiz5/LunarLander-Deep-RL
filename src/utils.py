@@ -80,5 +80,11 @@ def create_argument_parser():
         default="64,64",
         help="Comma-separated list of integers representing the sizes of hidden layers in the MLP (e.g., '64,64' or '128,128,64')."
     )
+    parser.add_argument(
+        "--target_update_interval",
+        type=int,
+        default=10000,
+        help="Number of timesteps between target network updates (for methods like DQN)."
+    )
 
     return parser

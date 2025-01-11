@@ -18,7 +18,7 @@ def main(args):
 
     # Build paths
     models_dir = f"models/{experiment_name}/{method_name}/"
-    model_path = f"{models_dir}{timesteps}-model.zip"
+    model_path = f"{models_dir}{timesteps}-{args.mlp_architecture}-{args.learning_rate}-{args.gamma}-{args.batch_size}-{args.target_update_interval}-model.zip"
 
     # Check if the model exists
     if not os.path.exists(model_path):
