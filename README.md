@@ -67,18 +67,15 @@ Make sure that a model with the same parameters exists in the appropriate saved 
 ---
 
 ## 📂 Project Structure
+-**`models/`** Contains saved models of different methods.
 - **`src/`**: Contains the core source code for training and evaluation.
 - **`src/train/`**: Script to train Agents.  
 - **`src/test/eval.py`**: Script for evaluating trained RL agents.  
+- **`src/custom_env.py`**: Contains the Custom env Wrapper for the bonus question.
+- **`src/manual_playing.py`**: is just a script to manually play the game using the keyboard.
 - **`requirements.txt`**: Lists the project dependencies.  
 
 ---
-
-## 🛠 Steps of the Solution
-1. Designed an argument parser to standardize and simplify the training and evaluation processes (just one parser due to lazyness).
-2. Used DQN and PPO with custom hyperparameters to train on the Lunar Lander environment.
-3. Implemented saving logic to avoid re-training models with identical parameters.
-4. Developed evaluation scripts to verify performance and log results.
 
 ## ✨ Possible Extensions
 - Add support for additional RL algorithms (e.g., PPO, A2C).
