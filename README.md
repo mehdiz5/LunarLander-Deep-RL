@@ -6,13 +6,6 @@ This project was done as part of the AI research internship recruitment project 
 
 Thank you InstaDeep for the opportunity.
 
-## 📋 Table of Contents
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Steps of the Solution](#steps-of-the-solution)
-- [Future Extensions](#future-extensions)
-
 ---
 
 ## 🚀 Setup Instructions
