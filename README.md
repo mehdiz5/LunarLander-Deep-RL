@@ -51,7 +51,7 @@ python src/train/DQN.py --experiment_name lunar_exp --method DQN --timesteps 100
 ```
 
 - **`--experiment_name`**: Name of the experiment. Used to save the model and logs.  
-- **`--method`**: The RL method, e.g., `DQN` or `PPO`.  
+- **`--method`**: The RL method, e.g., `DQN` or `PPO` ( Change the python script name too ).  
 - **`--timesteps`**: Number of timesteps for training.  
 - **`--mlp_architecture`**: Comma-separated sizes of hidden layers, e.g., `512,256`.
 
@@ -81,6 +81,6 @@ Make sure that a model with the same parameters exists in the appropriate saved 
 ---
 
 ## ✨ Possible Extensions
-- Add support for additional RL algorithms (e.g., PPO, A2C).
+- Add support for additional RL algorithms.
 - Use tensorboard or wandb.
 - Add flag files to check experiment status.
