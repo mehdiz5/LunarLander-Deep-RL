@@ -6,6 +6,8 @@ This project was done as part of the AI research internship recruitment project 
 
 Thank you InstaDeep for the opportunity.
 
+The Presentation [link](https://docs.google.com/presentation/d/12JBan9MjeZCC9qPN_SgFjRRYjId87gnHq1UKuVIBQLs/edit?usp=sharing).
+
 ---
 
 ## 🚀 Setup Instructions
