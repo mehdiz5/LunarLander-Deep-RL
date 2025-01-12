@@ -55,7 +55,7 @@ python src/train/DQN.py --experiment_name lunar_exp --method DQN --timesteps 100
 - **`--timesteps`**: Number of timesteps for training.  
 - **`--mlp_architecture`**: Comma-separated sizes of hidden layers, e.g., `512,256`.
 
-*Note : Additional arguments can be used for details use `python src/train/DQN.py --help`
+*Note : Additional arguments can be used for details use `python src/train/DQN.py --help`*
 
 ### Evaluating a Trained Model
 Evaluate a previously trained model using the following command:
