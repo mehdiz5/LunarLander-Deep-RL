@@ -22,9 +22,9 @@ cd LunarLander-Deep-RL
 ### Step 2: Set Up a Virtual Environment
 It is recommended to use a virtual environment to manage dependencies:
 ```bash
-python -m venv venv
-source venv/bin/activate   # For Linux/Mac
-venv\\Scripts\\activate    # For Windows
+python -m venv env
+source env/bin/activate   # For Linux/Mac
+env\\Scripts\\activate    # For Windows
 ```
 
 ### Step 3: Install Requirements
