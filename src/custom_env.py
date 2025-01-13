@@ -8,7 +8,6 @@ class FuelRewardWrapper(gym.Wrapper):
         Args:
             env: The original Gym environment to wrap.
             max_fuel (int): Maximum fuel available.
-            fuel_penalty (float): Penalty applied per unit of fuel used.
         """
         super().__init__(env)
         self.max_fuel = max_fuel
